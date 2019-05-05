@@ -1,0 +1,28 @@
+<!-- <div class="container" style="margin-top:100px;">
+    <div class="row">
+        <div class="card mb-4">
+            <img class="card-img-top" src="{{profile?.picture}}" alt="Card image cap">
+            <div class="card-body">
+                <h2 class="card-title">Profile Page</h2>
+                <p class="card-text"><label class="glyphicon glyphicon-user"><b>Name:</b></label></p>
+                <p class="nickname">{{ profile?.name }}</p>
+                <p class="card-text"><label class="glyphicon glyphicon-user"><b>Nickname:</b></label></p>
+                <p class="nickname">{{ profile?.nickname }}</p>
+            </div>
+        </div>
+    </div>
+</div> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="container" style="margin-top:100px;">
+    <div class="card">
+        <img src="{{profile?.picture}}" alt="User" style="width:100%">
+        <h1>{{ profile?.name }}</h1>
+        <p class="title">{{ profile?.nickname }}</p>
+        <a href="#"><i class="fa fa-dribbble"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-linkedin"></i></a>
+        <a href="#"><i class="fa fa-facebook"></i></a>
+        <p><button>Contact</button></p>
+    </div>
+</div>

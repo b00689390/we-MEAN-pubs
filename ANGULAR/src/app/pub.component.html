@@ -1,0 +1,41 @@
+<div class="container" style="margin-top: 100px;">
+    Search: <input type="text" placeholder="Search For Venue" [ngModelOptions]="{standalone:true}" [(ngModel)]="term" style="margin-right: 20px"/>
+    All: <input type="radio" value="" [ngModelOptions]="{standalone:true}" [(ngModel)]="search" /> &nbsp;
+    Pub: <input type="radio" value="Pub" [ngModelOptions]="{standalone:true}" [(ngModel)]="search" /> &nbsp;
+    Night Club: <input type="radio" value="Night Club" [ngModelOptions]="{standalone:true}" [(ngModel)]="search" /> &nbsp;
+    Hotel: <input type="radio" value="Hotel" [ngModelOptions]="{standalone:true}" [(ngModel)]="search" /> &nbsp;
+    Restaurant: <input type="radio" value="Restaurant" [ngModelOptions]="{standalone:true}" [(ngModel)]="search" /> &nbsp;
+    Social Club: <input type="radio" value="Social Club" [ngModelOptions]="{standalone:true}" [(ngModel)]="search" />
+    <br /><br />
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <td>Venue Name</td>
+                <td>Venue Type</td>
+                <td>Venue Latitude</td>
+                <td>Venue Longitude</td>
+                <td colspan="2">Actions</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr
+                *ngFor="let pub of webService.pub_list | async | paginate: { itemsPerPage: 10, currentPage: page } | filter:term | type:search">
+                <td>{{ pub.name }}</td>
+                <td>{{ pub.type }}</td>
+                <td>{{ pub.latitude }}</td>
+                <td>{{ pub.longitude }}</td>
+                <td><a [routerLink]="['/singlePub', pub._id]" class="btn btn-primary">Show</a></td>
+                <td *ngIf="authService.isAuthenticated()"><a (click)="deletePub(pub._id)"
+                        class="btn btn-danger">Delete</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="i-am-centered">
+        <div class="row">
+            <pagination-controls class="my-pagination" (pageChange)="page = $event"></pagination-controls>
+        </div>
+    </div>
+
+</div>

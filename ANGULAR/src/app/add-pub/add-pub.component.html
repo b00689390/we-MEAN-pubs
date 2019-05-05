@@ -1,0 +1,58 @@
+<div class="container" style="margin-top: 100px">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Add a Venue</h2>
+            <span *ngIf="authService.isAuthenticated()">
+                <form [formGroup]="pubForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" class="form-control" placeholder="Enter name"
+                            formControlName="name" [ngClass]="{ 'error' : isInvalid('name')}" [(ngModel)]="pub.name">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" name="address" class="form-control" placeholder="Enter address"
+                            formControlName="address" [ngClass]="{ 'error' : isInvalid('address')}"
+                            [(ngModel)]="pub.address">
+                    </div>
+                    <div class="form-group">
+                        <label for="postcode">Postcode</label>
+                        <input type="text" id="postcode" name="postcode"
+                            pattern="[A-Za-z]{1,2}[0-9Rr][0-9A-Za-z]? [0-9][ABD-HJLNP-UW-Zabd-hjlnp-uw-z]{2}"
+                            class="form-control" placeholder="Enter postcode" formControlName="postcode"
+                            [ngClass]="{ 'error' : isInvalid('postcode')}" [(ngModel)]="pub.postcode">
+                    </div>
+                    <div class="form-group">
+                        <label for="town">Town</label>
+                        <input type="text" id="town" name="town" class="form-control" placeholder="Enter town"
+                            formControlName="town" [ngClass]="{ 'error' : isInvalid('town')}" [(ngModel)]="pub.town">
+                    </div>
+                    <div class="form-group">
+                        <label for="type">Venue Type</label>
+                        <input type="text" id="type" name="type" class="form-control" placeholder="Enter type"
+                            formControlName="type" [ngClass]="{ 'error' : isInvalid('type')}" [(ngModel)]="pub.type">
+                    </div>
+                    <div class="form-group">
+                        <label for="latitude">Latitude</label>
+                        <input type="number" id="latitude" name="latitude" min="0" step="0.000000000001"
+                            class="form-control" placeholder="Enter latitude" formControlName="latitude"
+                            [ngClass]="{ 'error' : isInvalid('latitude')}" [(ngModel)]="pub.latitude">
+                    </div>
+                    <div class="form-group">
+                        <label for="longitude">Longitude</label>
+                        <input type="number" id="longitude" name="longitude" min="0" step="0.000000000001"
+                            class="form-control" placeholder="Enter longitude" formControlName="longitude"
+                            [ngClass]="{ 'error' : isInvalid('longitude')}" [(ngModel)]="pub.longitude">
+                    </div>
+                    <span *ngIf="isIncomplete()">You must complete all fields</span>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </span>
+            <span *ngIf="!authService.isAuthenticated()">
+                <h5 class="text-primary">
+                    Please log in to add a venue
+                </h5>
+            </span>
+        </div>
+    </div>
+</div>
